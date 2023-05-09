@@ -28,4 +28,4 @@
 
 
 ## 📝 ERD
-
+![realWorld](https://github.com/Ahnwonseok/realWorld/assets/95980876/ace3f6ca-7624-4284-b595-7ac0efc841fa)
