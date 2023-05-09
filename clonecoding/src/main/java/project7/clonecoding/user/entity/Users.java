@@ -29,16 +29,19 @@ public class Users extends Timestamp {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false, unique = true)
+    @Column
     private String email;
 
-    @Column(nullable = false)
+    @Column
     @Enumerated(value = EnumType.STRING)
     private UserRoleEnum role;
 
     //댓글과 연관관계
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Comment> comments = new ArrayList<>();
+
+    @Column(nullable = false)
+    private int failCount;
 
     public int getFailCount() {
         return failCount;
@@ -48,8 +51,7 @@ public class Users extends Timestamp {
         this.failCount = failCount;
     }
 
-    @Column(nullable = false)
-    private int failCount;
+
 
     public Users(UserRequestDto userRequestDto, String password, UserRoleEnum role){
         this.userName = userRequestDto.getUserName();

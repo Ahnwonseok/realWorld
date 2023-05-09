@@ -1,4 +1,4 @@
-package project7.clonecoding.like;
+package project7.clonecoding.commentLike;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

@@ -31,7 +31,8 @@ public class CommentController {
 
     //댓글 수정
     @PatchMapping("/comments/{commentId}")
-    public ResponseDto updateComment(@PathVariable Long commentId, @RequestBody CommentRequestDto requestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
+    public ResponseDto updateComment(@PathVariable Long commentId, @RequestBody CommentRequestDto requestDto,
+                                     @AuthenticationPrincipal UserDetailsImpl userDetails) {
         return commentService.updateComment(commentId, requestDto, userDetails.getUser());
     }
 

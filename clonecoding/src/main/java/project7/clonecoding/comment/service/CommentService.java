@@ -30,15 +30,12 @@ public class CommentService {
     @Transactional
     public ResponseDto createComments(Long gameId, CommentRequestDto commentRequestDto, Users user) throws SQLException {
         // 사용자 확인하기
-        String username = user.getUserName();
-        Users userFind = userRepository.findByUserName(username);
+        Users userFind = userRepository.findByUserName(user.getUserName()).orElseThrow(
+                () -> new IllegalArgumentException("해당 사용자가 없습니다.")
+        );
         Game game = gameRepository.findById(gameId).orElseThrow(
                 () -> new IllegalArgumentException("해당 게임이 존재하지 않습니다.")
         );
-
-        if (userFind == null){
-            throw new IllegalArgumentException("해당 사용자가 없습니다.");
-        }
 
         //댓글저장
         Comment comment = new Comment(commentRequestDto,userFind,game);
@@ -50,17 +47,17 @@ public class CommentService {
 
     @Transactional
     public ResponseDto updateComment(Long commentId, CommentRequestDto requestDto, Users user) {
-        // 사용자 확인하기
-        Long userId = user.getId();
 
         //DB에서 댓글 찾아오기
         Comment comment = commentRepository.findById(commentId).orElseThrow(
                 () -> new IllegalArgumentException("해당 댓글이 존재하지 않습니다.")
         );
+
         //본인이 쓴 댓글인지 확인
-        if (userId != comment.getUser().getId()) {
+        if (user.getId() != comment.getUser().getId()) {
             throw new IllegalArgumentException("본인의 댓글만 수정 가능합니다");
         }
+
         comment.update(requestDto);
 
         return new ResponseDto("댓글 수정완료");
@@ -68,7 +65,6 @@ public class CommentService {
 
     @Transactional
     public ResponseDto deleteComment(Long commentId, Users user) {
-        Long userId = user.getId();
 
         //DB에서 댓글 찾아오기
         Comment comment = commentRepository.findById(commentId).orElseThrow(
@@ -76,7 +72,7 @@ public class CommentService {
         );
 
         //본인이 쓴 댓글인지 확인
-        if (userId != comment.getUser().getId()) {
+        if (user.getId() != comment.getUser().getId()) {
             throw new IllegalArgumentException("본인의 댓글만 수정 가능합니다");
         }
 
@@ -87,13 +83,15 @@ public class CommentService {
 
     //게임 아이디에 맞는 댓글 전송
     public List<CommentResponseDto> getComment(Long gameId) {
-        List<CommentResponseDto> list = new ArrayList<>();
+        //해당 게임이 존재하는지 확인
         Game game = gameRepository.findById(gameId).orElseThrow(
                 () -> new IllegalArgumentException("해당 게임이 존재하지 않습니다.")
         );
+
         //DB에서 댓글 찾아오기
         List<Comment> comments = commentRepository.findAllByGame(game);
 
+        List<CommentResponseDto> list = new ArrayList<>();
         for(Comment comment : comments){
             list.add(new CommentResponseDto(comment));
         }

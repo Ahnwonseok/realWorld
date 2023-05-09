@@ -1,4 +1,4 @@
-package project7.clonecoding.like;
+package project7.clonecoding.commentLike;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

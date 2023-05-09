@@ -9,9 +9,6 @@
 
 
 ## 👥 팀원
-`김승주` : 탭과 댓글 담당
-
-`최동환` : 슬라이더, css, 게임정보 연결 담당
 
 `김재광` : 게임 게시글 관련 담당
 
@@ -20,22 +17,15 @@
 `이성진` : 회원 관리 기능 담당
 
 
-## ⚙ 기술 스택
-<img src="https://img.shields.io/badge/JAVA-007396?style=for-the-badge&logo=java&logoColor=white"><img src="https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=Spring&logoColor=white"><img src="https://img.shields.io/badge/mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"><img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
 
-<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"><img src="https://img.shields.io/badge/html-E34F26?style=for-the-badge&logo=html5&logoColor=white"><img src="https://img.shields.io/badge/css-1572B6?style=for-the-badge&logo=css3&logoColor=white"><img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">
+## 🥾프로젝트 구현
 
-<img src="https://img.shields.io/badge/gradle-89DAFB?style=for-the-badge&logo=gradle&logoColor=gray"><img src="https://img.shields.io/badge/redux-217F3E?style=for-the-badge&logo=redux&logoColor=black"><img src="https://img.shields.io/badge/aws-232F3E?style=for-the-badge&logo=aws&logoColor=white"><img src="https://img.shields.io/badge/apache tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=white">
-
-
-## 🥾 구현 기능
-
-* 게임 클릭시 상세 페이지 구현
-* 게임에 대한 댓글 달기 기능 구현
-* 댓글 수정 및 삭제 기능 구현
-* 스포일러성이 있는 댓글을 가림 처리 구현
-* 슬라이더를 캐러쎌 구현
+* 다양한 조건의 게임 검색
+* spring security + jwt으로 로그인 구현
+* realWorld data 크롤링
+* queryDsl로 동적 쿼리 구현
+* 댓글 좋아요 기능 구현
 
 
-## 📝 API, ERD
-notion) https://www.notion.so/spartaclonecoding7/7-532c49de6ad74528b54b30e50f681b6d
+## 📝 ERD
+

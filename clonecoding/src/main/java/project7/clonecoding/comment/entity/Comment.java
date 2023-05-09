@@ -1,7 +1,9 @@
 package project7.clonecoding.comment.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.ColumnDefault;
 import project7.clonecoding.comment.dto.CommentRequestDto;
 import project7.clonecoding.game.entity.Game;
 import project7.clonecoding.game.entity.StringArrayConverter;
@@ -23,7 +25,7 @@ public class Comment extends Timestamp{
 //    @Column(columnDefinition = "json")
 //    @Convert(converter = StringArrayConverter.class)
     @Column(nullable = false)
-    private String comment;
+    private String description;
 
     @Column
     private Boolean isSpoil;
@@ -34,18 +36,23 @@ public class Comment extends Timestamp{
     @Column
     private Integer stars;
 
+    @ColumnDefault("0")
+    private Integer likeCount;
+
     //유저와 다대일 매핑
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private Users user;
 
     //게임과 다대일 매핑
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "game_id")
     private Game game;
 
     public Comment (CommentRequestDto commentDto, Users user, Game game) {
-        this.comment = commentDto.getComment();
+        this.description = commentDto.getComment();
         this.isSpoil = commentDto.getIsSpoil();
         this.stars = commentDto.getStars();
         this.userName = user.getUserName();
@@ -54,6 +61,10 @@ public class Comment extends Timestamp{
     }
 
     public void update(CommentRequestDto requestDto){
-        this.comment = requestDto.getComment();
+        this.description = requestDto.getComment();
+    }
+
+    public void updateLikeCount(int count){
+        likeCount += count;
     }
 }

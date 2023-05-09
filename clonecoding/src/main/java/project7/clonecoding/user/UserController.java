@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import project7.clonecoding.security.UserDetailsImpl;
 import project7.clonecoding.user.dto.ResponseMsgDto;
 import project7.clonecoding.user.dto.UserRequestDto;
@@ -38,8 +39,14 @@ public class UserController {
 
     @ApiOperation(value = "유저 아이디 삭제")
     @DeleteMapping("/user/{id}")
-
     public Integer deleteUserId(@PathVariable long id,@RequestBody UserRequestDto userRequestDto,@AuthenticationPrincipal UserDetailsImpl userDetails){
         return userService.deleteUsersData(id, userRequestDto,userDetails.getUser());
     }
+
+    //접근 제한
+    @GetMapping("/user/forbidden")
+    public ModelAndView getForbidden() {
+        return new ModelAndView("forbidden");
+    }
+
 }

@@ -36,3 +36,5 @@ application-jwt.properties
 
 ### VS Code ###
 .vscode/
+
+application-aws.properties

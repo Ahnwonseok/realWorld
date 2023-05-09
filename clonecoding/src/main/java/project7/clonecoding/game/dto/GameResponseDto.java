@@ -2,114 +2,29 @@ package project7.clonecoding.game.dto;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
+import project7.clonecoding.comment.entity.Comment;
 import project7.clonecoding.game.entity.Game;
+import project7.clonecoding.game.entity.Images;
 
 import java.lang.reflect.Array;
 import java.util.List;
+import java.util.Set;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Getter
 public class GameResponseDto {
     private Long id;
     private String gameTitle;
-    private String titleImg;
-    private Boolean playType;
-    private String gamePrice;
     private String star;
-    private String difficulty;
-    private Boolean kit;
-    private String playTime;
-    private List<String> gameImg;
-    private String story;
-    private String people;
-    private String gameDesc;
-    private String gameDescShort;
-    private String category;
-    private List<Game> games;
+    private Set<Images> images;
+    private Set<Comment> comments;
 
-    public GameResponseDto(List<Game> game, int sc) {
-        games = game;
-    }
-
-    public GameResponseDto(List<Game> game, String Rct) {
-        games = game;
-    }
-
-    public GameResponseDto(List<Game> gameList) {
-        games = gameList;
-    }
-    public GameResponseDto(Game game, int sc) {//평점순
-        this.id = game.getId();
-        titleImg = game.getTitleImg();
+    public GameResponseDto(Game game) {//평점순
+        id = game.getId();
         gameTitle = game.getGameTitle();
         star = game.getStar();
-        if (game.getGamePrice()==0) {
-            gamePrice = "무료";
-        } else {
-            gamePrice = String.valueOf(game.getGamePrice());
-        }
-        gameDesc = game.getGameDesc();
-        gameDescShort = game.getGameDescShort();
-    }
-
-    public GameResponseDto(Game game, String Rct) {//최신순
-        this.id = game.getId();
-        titleImg = game.getTitleImg();
-        gameTitle = game.getGameTitle();
-        if (game.getGamePrice()==0) {
-            gamePrice = "무료";
-        } else {
-            gamePrice = String.valueOf(game.getGamePrice());
-        }
-        gameDesc = game.getGameDesc();
-        gameDescShort = game.getGameDescShort();
-        category = game.getCategory();
-    }
-
-    public GameResponseDto(Game game, Long Id, int sc) {//게임 이미지+스토리
-        this.id = game.getId();
-        titleImg = game.getTitleImg();
-        gameImg = game.getGameImg();
-        story = game.getStory();
-        gameDesc = game.getGameDesc();
-        gameDescShort = game.getGameDescShort();
-    }
-
-    public GameResponseDto(Game game, Long Id, String Rct) {//게임 필요인원 및 평점 등등
-        this.id = game.getId();
-        playType = game.getPlayType();
-        gameTitle = game.getGameTitle();
-        star = game.getStar();
-        if (game.getGamePrice()==0) {
-            gamePrice = "무료";
-        } else {
-            gamePrice = String.valueOf(game.getGamePrice());
-        }
-        difficulty = game.getDifficulty();
-        playTime = game.getPlayTime();
-        kit = game.getKit();
-    }
-
-    public GameResponseDto(Game game){
-        this.id = game.getId();
-        gameTitle = game.getGameTitle();
-        titleImg = game.getTitleImg();
-        playType = game.getPlayType();
-        if (game.getGamePrice()==0) {
-            gamePrice = "무료";
-        } else {
-            gamePrice = String.valueOf(game.getGamePrice());
-        }
-        star = game.getStar();
-        difficulty = game.getDifficulty();
-        kit = game.getKit();
-        playTime = game.getPlayTime();
-        gameImg = game.getGameImg();
-        story = game.getStory();
-        people = game.getPeople();
-        gameDesc = game.getGameDesc();
-        gameDescShort = game.getGameDescShort();
-        category = game.getCategory();
+        images = game.getGameImg();
+        comments = game.getComments();
     }
 
 }

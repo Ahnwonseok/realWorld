@@ -1,4 +1,4 @@
-package project7.clonecoding.like;
+package project7.clonecoding.commentLike;
 
 import org.springframework.http.HttpStatus;
 import project7.clonecoding.comment.repository.CommentRepository;
@@ -24,11 +24,13 @@ public class CommentLikeService {
         );
 
         if (!commentLikeRepository.existsByCommentIdAndUserId(commentId, user.getId())) {
-            commentLikeRepository.saveAndFlush(new CommentLike(comment, user));
+            commentLikeRepository.save(new CommentLike(comment, user));
+            comment.updateLikeCount(+1);
             return new ResponseMsgDto("좋아요 완료", HttpStatus.OK.value());
 
         } else {
             commentLikeRepository.deleteByCommentIdAndUserId(comment.getId(), user.getId());
+            comment.updateLikeCount(-1);
             return new ResponseMsgDto("좋아요 취소", HttpStatus.OK.value());
         }
     }

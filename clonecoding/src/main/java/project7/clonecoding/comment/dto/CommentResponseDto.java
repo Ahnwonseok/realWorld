@@ -23,7 +23,7 @@ public class CommentResponseDto {
 
     public CommentResponseDto(Comment comment) {//평점순
         this.id = comment.getId();
-        this.comment = comment.getComment();
+        this.comment = comment.getDescription();
         this.isSpoil = comment.getIsSpoil();
         this.user = comment.getUserName();
         this.stars = comment.getStars();

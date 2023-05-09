@@ -1,4 +1,4 @@
-package project7.clonecoding.like;
+package project7.clonecoding.commentLike;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,6 +22,7 @@ public class CommentLike {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Users user;
+
     public CommentLike(Comment comment, Users user) {
         this.comment = comment;
         this.user = user;

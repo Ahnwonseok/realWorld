@@ -5,7 +5,7 @@ import lombok.Getter;
 import project7.clonecoding.user.entity.Users;
 
 @Getter
-@JsonInclude(JsonInclude.Include.NON_NULL)
+//@JsonInclude(JsonInclude.Include.NON_NULL)
 public class UserRequestDto {
     private String userName;
     private String email;

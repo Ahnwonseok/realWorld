@@ -1,18 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="anwon" uuid="ee42dbec-f05f-4cc7-9433-b13fc9efc2ed">
+    <data-source source="LOCAL" name="localhost" uuid="60198ec4-1762-4c47-97cf-88abdf5fed25">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://database.cp7vsvj41kr8.ap-northeast-2.rds.amazonaws.com:3306/data</jdbc-url>
-      <working-dir>$ProjectFileDir$</working-dir>
-    </data-source>
-    <data-source source="LOCAL" name="local" uuid="3bc5b531-4323-4a01-85cf-52685b73c270">
-      <driver-ref>mysql.8</driver-ref>
-      <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/mydata</jdbc-url>
+      <jdbc-url>jdbc:mysql://localhost:3306/database</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

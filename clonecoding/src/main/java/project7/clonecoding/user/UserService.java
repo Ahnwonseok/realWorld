@@ -14,6 +14,8 @@ import project7.clonecoding.user.entity.UserRoleEnum;
 
 import javax.servlet.http.HttpServletResponse;
 
+import java.util.Optional;
+
 import static java.util.regex.Pattern.matches;
 
 @Service
@@ -45,9 +47,9 @@ public class UserService {
 
 
         //아이디&이메일 중복 확인
-        Users users = userRepository.findByUserName(userRequestDto.getUserName());
-        if (users != null) {
-            throw new IllegalArgumentException("이미 등록된 이름입니다.");
+        Optional<Users> found = userRepository.findByUserName(userRequestDto.getUserName());
+        if (found.isPresent()) {
+            throw new IllegalArgumentException("중복된 사용자가 존재합니다.");
         }
 
         Users emails = userRepository.findByEmail(userRequestDto.getEmail());
@@ -87,10 +89,12 @@ public class UserService {
         if (users == null) {
             throw new IllegalArgumentException("등록되지 않은 이메일입니다.");
         }
+
         if (!passwordEncoder.matches(password, users.getPassword())) { // 비밀번호 입력 오류 시
         users.setFailCount(users.getFailCount()+1); //로그인 실패 시 실패 횟수 1 늘림
-        return new ResponseMsgDto("비밀번호가 일치하지 않습니다. "+iDStop(users.getFailCount()),HttpStatus.BAD_REQUEST.value());
+        return new ResponseMsgDto("비밀번호가 일치하지 않습니다. "+ iDStop(users.getFailCount()),HttpStatus.BAD_REQUEST.value());
         }
+
         // 토큰 헤더에 올리고 응답해주기
         response.addHeader(JwtUtil.AUTHORIZATION_HEADER,
                 jwtUtil.createToken(users.getUserName(), users.getRole()));
@@ -128,6 +132,7 @@ public class UserService {
         }
         return HttpStatus.OK.value();
     }
+
     public String iDStop(int i){
         if (i>4){
             return ("현재 실패 횟수는 "+i+" 입니다. 본인이 맞으신가요?");}else{
